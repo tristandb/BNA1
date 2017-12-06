@@ -16,16 +16,33 @@ train_ind <- sample(seq_len(nrow(mushroom_data)), size = sample_size)
 train_set <- mushroom_data[train_ind, ]
 test_set <- mushroom_data[-train_ind, ]
 
-# X -> M <- Y : X + Y + X * Y
-# 
-dgf <- ~cap.shape:class + cap.surface:class + cap.color:class + bruises:class
-dG <- dag(dgf)
-# pp <- extractCPT(train_set, dG)
+# Create DAG
+dgf <- ~cap.shape:class + cap.surface:class + cap.color:class + bruises:class +
+  odor:class + gill.attachment:class + gill.spacing:class + gill.size:class +
+  gill.color:class + stalk.shape:class + stalk.root:class + stalk.surface.above.ring:class +
+  stalk.surface.below.ring:class + stalk.color.above.ring:class + stalk.color.below.ring:class +
+  veil.type:class + veil.color:class + ring.number:class + ring.type:class + spore.print.color:class +
+  population:class + habitat:class
 
-bn <- grain(dG, train_set)
-plot(bn)
+#dgf <- ~class:cap.shape + class:cap.surface + class:cap.color + class:bruises +
+#        class:odor + class:gill.attachment + class:gill.spacing + class:gill.size +
+#        class:gill.color + class:stalk.shape + class:stalk.root + class:stalk.surface.above.ring +
+#        class:stalk.surface.below.ring + class:stalk.color.above.ring + class:stalk.color.below.ring +
+#        class:veil.type + class:veil.color + class:ring.number + class:ring.type + class:spore.print.color +
+#        class:population + class:habitat
 
-# Compile network
-bn <- compile(bn)
+dg <- dag(dgf)
+pp <- extractCPT(train_set, dg)
+cpp <- compileCPT(pp)
+pn <- grain(cpp)
 
-querygrain(bn, nodes=c("class"), type="joint")
+# Get test_set entry to determine evidence
+testdf <- test_set[2,2:23]
+# Create a proper list (not a list with one element)
+test <- unlist(testdf)
+test1 <- list(asia="hi")
+#test1 <- list(test_set[4,2:23])
+#test2 <- list(test_set[6,2:23])
+
+querygrain(setEvidence(pn, evidence = list(test)))$class
+
