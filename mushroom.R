@@ -38,19 +38,13 @@ pn <- grain(cpp)
 
 # Get test_set entry to determine evidence
 testdf <- test_set[2,2:23]
-# Create a proper list (not a list with one element)
-test <- unlist(testdf)
-test1 <- list(asia="hi")
-#test1 <- list(test_set[4,2:23])
-#test2 <- list(test_set[6,2:23])
+# Not only the problem of one element list, we also need to change the factor class to character class to be read as evidence
+test <- as.list(vector(length = ncol(testdf)))
+for (i in 1:ncol(testdf)) {
+        test[[i]] <- as.character(testdf[,i])
+        }
+names(test) <- colnames(testdf)
 
-querygrain(setEvidence(pn, evidence = list(test)))$class
-
-#library(purrr)
-#iris[1:2,] %>% purrr::transpose()
-#This function seems to be a good solution
-#https://stackoverflow.com/questions/3492379/data-frame-rows-to-a-list
-
-#A nice tutorial for spliting the list
-#http://uc-r.github.io/lists_subsetting
+# The prediction is 100% correct... I've tried a few
+querygrain(setEvidence(pn, evidence = test))$class
 
