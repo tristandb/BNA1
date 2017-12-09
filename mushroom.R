@@ -46,3 +46,11 @@ test1 <- list(asia="hi")
 
 querygrain(setEvidence(pn, evidence = list(test)))$class
 
+#library(purrr)
+#iris[1:2,] %>% purrr::transpose()
+#This function seems to be a good solution
+#https://stackoverflow.com/questions/3492379/data-frame-rows-to-a-list
+
+#A nice tutorial for spliting the list
+#http://uc-r.github.io/lists_subsetting
+
