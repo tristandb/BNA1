@@ -36,15 +36,39 @@ pp <- extractCPT(train_set, dg)
 cpp <- compileCPT(pp)
 pn <- grain(cpp)
 
-# Get test_set entry to determine evidence
-testdf <- test_set[2,2:23]
-# Not only the problem of one element list, we also need to change the factor class to character class to be read as evidence
-test <- as.list(vector(length = ncol(testdf)))
-for (i in 1:ncol(testdf)) {
-        test[[i]] <- as.character(testdf[,i])
-        }
-names(test) <- colnames(testdf)
+true = 0
 
-# The prediction is 100% correct... I've tried a few
-querygrain(setEvidence(pn, evidence = test))$class
+print(pp$cap.shape.parray)
+
+for (j in 1:nrow(test_set)) {
+  # Get test_set entry to determine evidence
+  testdf <- test_set[j,3:23]
+  testclass <- test_set[j, 1]
+  # Not only the problem of one element list, we also need to change the factor class to character class to be read as evidence
+  test <- as.list(vector(length = ncol(testdf)))
+  for (i in 1:ncol(testdf)) {
+    test[[i]] <- as.character(testdf[,i])
+  }
+  names(test) <- colnames(testdf)
+  
+  # Set evidence and get prediction
+  evidence <- setEvidence(pn, evidence = test)
+  result <- querygrain(evidence)$class
+  maxresult <- which.max(result)
+  
+  # Compare true result to 
+  if (as.character(maxresult) == "1") {
+    maxresult <- "e"
+  } else {
+    maxresult <- "p"
+  }
+  
+  if (maxresult == as.character(testclass)) {
+    true <- true + 1
+  }
+}
+
+print(true/nrow(test_set))
+
+
 
