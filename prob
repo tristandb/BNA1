@@ -1,0 +1,89 @@
+[1] "class"
+
+   e    p 
+4208 3916 
+
+[1] "cap.shape"
+
+   b    c    f    k    s    x 
+ 452    4 3152  828   32 3656 
+[1] "cap.surface"
+
+   f    g    s    y 
+2320    4 2556 3244 
+[1] "cap.color"
+
+   b    c    e    g    n    p    r    u    w    y 
+ 168   44 1500 1840 2284  144   16   16 1040 1072 
+[1] "bruises"
+
+   f    t 
+4748 3376 
+[1] "odor"
+
+   a    c    f    l    m    n    p    s    y 
+ 400  192 2160  400   36 3528  256  576  576 
+[1] "gill.attachment"
+
+   a    f 
+ 210 7914 
+[1] "gill.spacing"
+
+   c    w 
+6812 1312 
+[1] "gill.size"
+
+   b    n 
+5612 2512 
+[1] "gill.color"
+
+   b    e    g    h    k    n    o    p    r    u    w    y 
+1728   96  752  732  408 1048   64 1492   24  492 1202   86 
+[1] "stalk.shape"
+
+   e    t 
+3516 4608 
+[1] "stalk.root"
+
+   ?    b    c    e    r 
+2480 3776  556 1120  192 
+[1] "stalk.surface.above.ring"
+
+   f    k    s    y 
+ 552 2372 5176   24 
+[1] "stalk.surface.below.ring"
+
+   f    k    s    y 
+ 600 2304 4936  284 
+[1] "stalk.color.above.ring"
+
+   b    c    e    g    n    o    p    w    y 
+ 432   36   96  576  448  192 1872 4464    8 
+[1] "stalk.color.below.ring"
+
+   b    c    e    g    n    o    p    w    y 
+ 432   36   96  576  512  192 1872 4384   24 
+[1] "veil.color"
+
+   n    o    w    y 
+  96   96 7924    8 
+[1] "ring.number"
+
+   n    o    t 
+  36 7488  600 
+[1] "ring.type"
+
+   e    f    l    n    p 
+2776   48 1296   36 3968 
+[1] "spore.print.color"
+
+   b    h    k    n    o    r    u    w    y 
+  48 1632 1872 1968   48   72   48 2388   48 
+[1] "population"
+
+   a    c    n    s    v    y 
+ 384  340  400 1248 4040 1712 
+[1] "habitat"
+
+   d    g    l    m    p    u    w 
+3148 2148  832  292 1144  368  192 
